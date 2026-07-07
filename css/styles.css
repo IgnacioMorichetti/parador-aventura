@@ -1,0 +1,283 @@
+/* ===== BASE ===== */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+  background-color: #F7F1E6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+section[id] { scroll-margin-top: 80px; }
+
+/* Textura de grano sutil */
+.section-cream {
+  background-color: #F7F1E6;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+}
+
+/* ===== NAVBAR ===== */
+#navbar { color: white; }
+
+#navbar .nav-brand,
+#navbar .nav-link { color: white; }
+
+#navbar .ham-line { background-color: white; }
+
+#navbar.nav-scrolled {
+  background: rgba(247, 241, 230, 0.97);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 1px 20px rgba(0,0,0,0.06);
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  color: #2C1F14;
+}
+
+#navbar.nav-scrolled .nav-brand,
+#navbar.nav-scrolled .nav-link { color: #2C1F14; }
+
+#navbar.nav-scrolled .ham-line { background-color: #2C1F14; }
+
+/* Logo ring al scrollear */
+#navbar.nav-scrolled .nav-brand img {
+  ring-color: rgba(44, 31, 20, 0.3);
+}
+
+/* Toggle button */
+.theme-toggle {
+  border-color: rgba(255, 255, 255, 0.45);
+  color: white;
+}
+
+.theme-toggle:hover { background-color: rgba(255,255,255,0.1); }
+
+#navbar.nav-scrolled .theme-toggle {
+  border-color: rgba(44, 31, 20, 0.3);
+  color: #2C1F14;
+}
+
+#navbar.nav-scrolled .theme-toggle:hover { background-color: rgba(44,31,20,0.07); }
+
+/* ===== HERO ===== */
+.hero-overlay {
+  background: linear-gradient(
+    160deg,
+    rgba(15, 48, 9, 0.10) 0%,
+    rgba(15, 48, 9, 0.40) 40%,
+    rgba(10, 30, 6, 0.82) 100%
+  );
+}
+
+/* Logo emblem con halo de atardecer */
+.hero-logo-ring {
+  padding: 5px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    #c94d1e 0deg,
+    #e07a22 70deg,
+    #f0b030 140deg,
+    #f5d060 180deg,
+    #f0b030 220deg,
+    #e07a22 290deg,
+    #c94d1e 360deg
+  );
+  box-shadow:
+    0 0 0 3px rgba(240, 176, 48, 0.12),
+    0 0 32px rgba(224, 122, 34, 0.65),
+    0 0 75px rgba(201, 77, 30, 0.38);
+  animation: hero-logo-pulse 4s ease-in-out infinite;
+}
+
+.hero-logo-img {
+  display: block;
+  width: 158px;
+  height: 158px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+@media (min-width: 640px) {
+  .hero-logo-img {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@keyframes hero-logo-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 3px rgba(240, 176, 48, 0.12),
+      0 0 32px rgba(224, 122, 34, 0.65),
+      0 0 75px rgba(201, 77, 30, 0.38);
+  }
+  50% {
+    box-shadow:
+      0 0 0 3px rgba(240, 176, 48, 0.28),
+      0 0 50px rgba(224, 122, 34, 0.85),
+      0 0 105px rgba(201, 77, 30, 0.52);
+  }
+}
+
+/* ===== WAVES ===== */
+.wave-top  { line-height: 0; margin-top: -2px; }
+.wave-bottom { line-height: 0; }
+.wave-top svg, .wave-bottom svg { display: block; width: 100%; height: 70px; }
+
+/* ===== ACTIVITY CARDS ===== */
+.activity-card {
+  box-shadow: 0 2px 12px rgba(44, 31, 20, 0.07);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.activity-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(44, 31, 20, 0.13);
+}
+
+.card-img {
+  transition: transform 0.6s ease;
+}
+
+.activity-card:hover .card-img {
+  transform: scale(1.05);
+}
+
+/* ===== MODAL ===== */
+#modal-overlay { display: none; }
+
+#modal-overlay.open {
+  display: flex;
+  animation: fadeIn 0.2s ease-out;
+}
+
+#modal-content { animation: slideUp 0.25s ease-out; }
+
+@keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+/* ===== MOBILE MENU ===== */
+#mobile-menu {
+  background: rgba(247, 241, 230, 0.98);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+}
+
+#mobile-menu .mobile-link {
+  color: #2C1F14;
+  display: block;
+}
+
+/* Hamburger → X */
+#hamburger.open span:first-child  { transform: translateY(7px) rotate(45deg); }
+#hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+#hamburger.open span:last-child   { transform: translateY(-7px) rotate(-45deg); }
+
+/* ===== WHATSAPP FAB ===== */
+.whatsapp-fab { box-shadow: 0 4px 18px rgba(34, 197, 94, 0.45); }
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: #F7F1E6; }
+::-webkit-scrollbar-thumb { background: #2e6823; border-radius: 3px; }
+
+
+/* ================================================================
+   MODO OSCURO
+   Paleta: azul lago profundo — noche en el embalse Potrerillos
+   ================================================================ */
+
+.dark { background-color: #162b40; }
+
+.dark body { background-color: #162b40; color: #ece7de; }
+
+/* Secciones */
+.dark .section-cream {
+  background-color: #162b40;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+}
+
+.dark .bg-white { background-color: #183045 !important; }
+
+/* Navbar scrolleado */
+.dark #navbar.nav-scrolled {
+  background: rgba(22, 43, 64, 0.97);
+  box-shadow: 0 1px 20px rgba(0,0,0,0.3);
+}
+
+.dark #navbar.nav-scrolled .nav-brand,
+.dark #navbar.nav-scrolled .nav-link { color: #ece7de; }
+
+.dark #navbar.nav-scrolled .ham-line { background-color: #ece7de; }
+
+.dark #navbar.nav-scrolled .theme-toggle {
+  border-color: rgba(236, 231, 222, 0.3);
+  color: #ece7de;
+}
+
+/* Menú mobile */
+.dark #mobile-menu { background: rgba(22, 43, 64, 0.98); backdrop-filter: blur(10px); border-color: #264560; }
+.dark .mobile-link { color: #ece7de !important; border-color: rgba(38, 69, 96, 0.6) !important; }
+
+/* Texto */
+.dark .text-bark        { color: #ece7de; }
+.dark .text-forest-900  { color: #a8c8e8; }
+.dark .text-forest-800  { color: #7ab0d4; }
+.dark .text-forest-700  { color: #5a98c2; }
+.dark .text-forest-600  { color: #4a88b2; }
+.dark .text-earth-600   { color: #d4956a; }
+.dark .text-earth-700   { color: #c07a50; }
+.dark .text-earth-800   { color: #a86540; }
+.dark .text-stone-500   { color: #8d99a9; }
+.dark .text-stone-400   { color: #7a8898; }
+.dark .text-stone-600   { color: #9daaba; }
+.dark .text-stone-700   { color: #b0bccc; }
+
+/* Bordes */
+.dark .border-sand { border-color: #264560; }
+.dark .border-forest-200 { border-color: #264560; }
+.dark .border-earth-200  { border-color: #3a2510; }
+
+/* Cards de actividades */
+.dark .activity-card {
+  background-color: #1c3450 !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+}
+
+.dark .activity-card:hover {
+  box-shadow: 0 12px 32px rgba(0,0,0,0.45);
+}
+
+/* Horarios */
+.dark .bg-earth-50 { background-color: #221608 !important; }
+.dark .bg-forest-50 { background-color: #16283c !important; }
+.dark .border-earth-200 { border-color: #3a2510 !important; }
+.dark .border-forest-200 { border-color: #264560 !important; }
+
+/* Fondo separador horarios */
+.dark .bg-sand { background-color: #1c3450 !important; }
+
+/* Parador amenities hover */
+.dark .hover\:bg-cream:hover { background-color: #264560; }
+
+/* Cards de contacto (bg-white con borde) */
+.dark .bg-white.border-sand {
+  background-color: #1c3450 !important;
+}
+
+/* Modal */
+.dark #modal-content { background-color: #1c3450; }
+.dark #modal-content .bg-amber-50 {
+  background-color: #2a1c08;
+  border-color: #4a3018;
+  color: #d4a060;
+}
+.dark #modal-content .bg-stone-100 { background-color: #132335; color: #8d99a9; }
+.dark #modal-content .bg-forest-100 { background-color: #183045; color: #5a98c2; }
+.dark #modal-content .bg-earth-100 { background-color: #221608; color: #d4956a; }
+.dark #modal-content .text-stone-600 { color: #9daaba; }
+.dark #modal-content .text-forest-900 { color: #a8c8e8; }
+.dark #modal-content .hover\:bg-stone-100:hover { background-color: #132335; }
+
+/* Scrollbar en modo oscuro */
+.dark ::-webkit-scrollbar-track { background: #162b40; }
+.dark ::-webkit-scrollbar-thumb { background: #2e5a8a; }

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parador Aventura — Potrerillos, Mendoza</title>
+  <meta name="description" content="Turismo aventura en Potrerillos y Cacheuta, Mendoza. Rafting, Kayak, Trekking, Canopy, MTB y más.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            forest: {
+              50:  '#edf5eb', 100: '#cfe5ca', 200: '#afd3a8', 300: '#8ec186',
+              400: '#6eaf60', 500: '#509e3e', 600: '#3f8531', 700: '#2e6823',
+              800: '#1d4d17', 900: '#0f3009',
+            },
+            earth: {
+              50:  '#fdf6ec', 100: '#f9e8ca', 200: '#f2cf99', 300: '#e9b367',
+              400: '#df963f', 500: '#d07a21', 600: '#b86018', 700: '#974815',
+              800: '#7b3415', 900: '#652a13',
+            },
+            cream: '#F7F1E6',
+            bark:  '#2C1F14',
+            sand:  '#E8DCC8',
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans:  ['Lato', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="font-sans text-bark">
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 py-5">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+
+      <a href="#inicio" class="flex items-center gap-2.5 nav-brand group">
+        <img src="img/logo.jpg" alt="Logo Parador Aventura" class="h-10 w-10 rounded-full object-cover shrink-0 ring-2 ring-white/30 group-hover:ring-white/60 transition-all">
+        <span class="font-serif text-xl font-bold tracking-wide">Parador Aventura</span>
+      </a>
+
+      <!-- Links desktop -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#actividades" class="nav-link text-sm uppercase tracking-widest font-bold transition-colors">Actividades</a>
+        <a href="#el-parador"  class="nav-link text-sm uppercase tracking-widest font-bold transition-colors whitespace-nowrap">El Parador</a>
+        <a href="#nosotros"    class="nav-link text-sm uppercase tracking-widest font-bold transition-colors">Nosotros</a>
+        <a href="#contacto"    class="nav-link text-sm uppercase tracking-widest font-bold transition-colors mr-5">Contacto</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button id="theme-toggle"
+                class="theme-toggle w-8 h-8 rounded-full border flex items-center justify-center transition-all duration-300"
+                aria-label="Cambiar modo">
+          <svg id="icon-moon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+          <svg id="icon-sun" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+        </button>
+        <!-- Reservar — solo desktop -->
+        <a href="#contacto" class="hidden md:inline-flex bg-forest-800 hover:bg-forest-700 text-cream px-5 py-2.5 rounded-full text-sm font-bold tracking-widest uppercase transition-colors">
+          Reservar
+        </a>
+        <!-- Hamburger — solo móvil -->
+        <button id="hamburger" class="md:hidden flex flex-col justify-center gap-[5px] w-9 h-9 rounded-lg" aria-label="Abrir menú">
+          <span class="ham-line block w-5 h-0.5 rounded-full mx-auto transition-all duration-300 origin-center"></span>
+          <span class="ham-line block w-5 h-0.5 rounded-full mx-auto transition-all duration-300"></span>
+          <span class="ham-line block w-5 h-0.5 rounded-full mx-auto transition-all duration-300 origin-center"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menú móvil desplegable -->
+    <div id="mobile-menu" class="hidden md:hidden">
+      <div class="px-6 pb-5 pt-2 flex flex-col gap-1 border-t border-white/20">
+        <a href="#actividades" class="mobile-link text-sm uppercase tracking-widest font-bold py-3.5 border-b border-white/10 transition-colors">Actividades</a>
+        <a href="#el-parador"  class="mobile-link text-sm uppercase tracking-widest font-bold py-3.5 border-b border-white/10 transition-colors">El Parador</a>
+        <a href="#nosotros"    class="mobile-link text-sm uppercase tracking-widest font-bold py-3.5 border-b border-white/10 transition-colors">Nosotros</a>
+        <a href="#contacto"    class="mobile-link text-sm uppercase tracking-widest font-bold py-3.5 border-b border-white/10 transition-colors">Contacto</a>
+        <a href="#contacto"    class="mobile-link mt-3 bg-forest-800 hover:bg-forest-700 text-cream text-center py-3 rounded-full text-sm font-bold tracking-widest uppercase transition-colors">Reservar</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section id="inicio" class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('img/hero.jpg')"></div>
+    <div class="absolute inset-0 hero-overlay"></div>
+
+    <div class="relative z-10 text-white px-6 text-center max-w-4xl mx-auto">
+
+      <!-- Logo con transparencia -->
+      <div class="flex justify-center mb-6">
+        <img src="img/logo.jpg" alt="Parador Aventura" class="w-40 h-40 sm:w-52 sm:h-52 rounded-full object-cover opacity-70 select-none pointer-events-none">
+      </div>
+
+      <!-- Título -->
+      <h1 class="font-serif font-bold leading-tight mb-4" style="font-size: clamp(2.5rem, 6.5vw, 5rem)">
+        Parador <em class="italic font-normal text-earth-200">Aventura</em>
+      </h1>
+
+      <p class="text-white/80 font-light max-w-md mx-auto mb-10 text-base sm:text-lg leading-relaxed">
+        Naturaleza, adrenalina y experiencias únicas en el corazón de los Andes mendocinos.
+      </p>
+
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="#actividades"
+           class="bg-earth-600 hover:bg-earth-500 text-white px-8 py-3.5 rounded-full font-bold uppercase tracking-widest text-sm transition-all duration-300 hover:shadow-lg">
+          Ver Actividades
+        </a>
+        <a href="#contacto"
+           class="border border-white/50 text-white hover:bg-white/10 px-8 py-3.5 rounded-full font-bold uppercase tracking-widest text-sm transition-all duration-300">
+          Reservar
+        </a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Wave hero → actividades -->
+  <div id="wave-1" class="wave-top section-cream">
+    <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path id="wave-1-path" d="M0,35 C360,70 1080,0 1440,35 L1440,70 L0,70 Z" fill="#F7F1E6"/>
+    </svg>
+  </div>
+
+  <!-- ===== ACTIVIDADES ===== -->
+  <section id="actividades" class="section-cream py-20 px-6">
+    <div class="max-w-7xl mx-auto">
+
+      <div class="mb-14">
+        <h2 class="font-serif text-4xl sm:text-5xl font-bold text-forest-900">Nuestras Actividades</h2>
+        <p class="text-stone-500 mt-3 max-w-md">Nueve experiencias únicas en el embalse y las montañas de Potrerillos.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- KAYAK -->
+        <div class="activity-card bg-white rounded-2xl overflow-hidden cursor-pointer" onclick="openModal('kayak')">
+          <div class="relative h-52 overflow-hidden">
+            <img src="img/kayak/kayak-2.jpg" alt="Kayak en Bahía Bonita" class="card-img w-full h-full object-cover object-[center_90%]" loading="lazy">
+          </div>
+          <div class="p-5">
+            <h3 class="font-serif text-xl font-bold text-forest-900 mb-1">Kayak</h3>
+            <p class="text-xs text-earth-600 font-medium mb-3">Bahía Bonita, Potrerillos &nbsp;·&nbsp; 1 - 1.5 hs</p>
+            <p class="text-sm text-stone-500 leading-relaxed">Navegá el embalse en kayak simple, doble o triple. Chaleco, remo e instrucciones incluidos.</p>
+          </div>
+        </div>
+
+        <!-- BICI ACUÁTICA -->
+        <div class="activity-card bg-white rounded-2xl overflow-hidden cursor-pointer" onclick="openModal('bici')">
+          <div class="relative h-52 overflow-hidden">
+            <img src="img/bici-acuatica/bici-1.jpg" alt="Bici Acuática en Bahía Bonita" class="card-img w-full h-full object-cover" loading="lazy">
+          </div>
+          <div class="p-5">
+            <h3 class="font-serif text-xl font-bold text-forest-900 mb-1">Bici Acuática</h3>
+            <p class="text-xs text-earth-600 font-medium mb-3">Bahía Bonita, Potrerillos &nbsp;·&nbsp; 1 hs</p>
+            <p class="text-sm text-stone-500 leading-relaxed">Pedaleá sobre el agua en bicicletas anfibias para 1 o 2 personas. Ideal para toda la familia.</p>
+          </div>
+        </div>
+
+        <!-- SUP -->
+        <div class="activity-card bg-white rounded-2xl overflow-hidden cursor-pointer" onclick="openModal('sup')">
+          <div class="h-52 overflow-hidden">
+            <img src="img/sup/sup-1.jpg" alt="Stand Up Paddle en Bahía Bonita" class="card-img w-full h-full object-cover" loading="lazy">
+          </div>
+          <div class="p-5">
+            <h3 class="font-serif text-xl font-bold text-forest-900 mb-1">Stand Up Paddle</h3>
+            <p class="text-xs text-earth-600 font-medium mb-3">Bahía Bonita, Potrerillos &nbsp;·&nbsp; 1 - 1.5 hs</p>
+            <p class="text-sm text-stone-500 leading-relaxed">Pararte sobre el agua con los Andes de fondo. Travesía libre o guiada. Fácil para todos los niveles.</p>
+          </div>
+        </div>
+
+        <!-- RAFTING -->
+        <div class="activity-card bg-white rounded-2xl overflow-hidden cursor-pointer" onclick="openModal('rafting')">
+          <div class="relative h-52 overflow-hidden">
+            <img src="img/rafting/rafting-1.jpg" alt="Rafting en Potrerillos" class="card-img w-full h-full object-cover" loading="lazy">
+          </div>
+          <div class="p-5">
+            <h3 class="font-serif text-xl font-bold text-forest-900 mb-1">Rafting</h3>
+            <p class="text-xs text-earth-600 font-medium mb-3">Potrerillos y Cacheuta &nbsp;·&nbsp; ~1.5 hs</p>
+            <p class="text-sm text-stone-500 leading-relaxed">Navegá los rápidos del río Mendoza con guías expertos y equipo de protección completo.</p>
+          </div>
+        </div>
+
+        <!-- CANOPY -->
+        <div class="activity-card bg-white rounded-2xl overflow-hidden cursor-pointer" onclick="openModal('canopy')">
+          <div class="relative h-52 overflow-hidden">
+            <img src="img/canopy/canopy-1.jpg" alt="Canopy en Potrerillos" class="card-img w-full h-full object-cover" loading="lazy">
+          </div>
+          <div class="p-5">
+            <h3 class="font-serif text-xl font-bold text-forest-900 mb-1">Canopy</h3>
+            <p class="text-xs text-earth-600 font-medium mb-3">Potrerillos &nbsp;·&nbsp; ~1 hs</p>
+            <p class="text-sm text-stone-500 leading-relaxed">Volás en tirolesas de hasta 700 metros con vistas increíbles a las montañas y el embalse.</p>
+          </div>
+        </div>
+
+        <!-- TREKKING -->
+        <div class="activity-card bg-white rounded-2xl overflow-hidden cursor-pointer" onclick="openModal('trekking')">
+          <div class="relative h-52 overflow-hidden">
+            <img src="img/trekking/trekking-1.jpg" alt="Trekking en Potrerillos" class="card-img w-full h-full object-cover" loading="lazy">
+          </div>
+          <div class="p-5">
+            <h3 class="font-serif text-xl font-bold text-forest-900 mb-1">Trekking</h3>
+            <p class="text-xs text-earth-600 font-medium mb-3">Potrerillos &nbsp;·&nbsp; 3 a 5 hs</p>
+            <p class="text-sm text-stone-500 leading-relaxed">Senderos de montaña con guía especializado, snacks y bebida incluidos. Mínimo 2 personas.</p>
+          </div>
+        </div>
+
+        <!-- MTB -->
+        <div class="activity-card bg-white rounded-2xl overflow-hidden cursor-pointer" onclick="openModal('mtb')">
+          <div class="h-52 overflow-hidden">
+            <img src="img/mtb/mtb-1.jpg" alt="Mountain Bike en Potrerillos" class="card-img w-full h-full object-cover" loading="lazy">
+          </div>
+          <div class="p-5">
+            <h3 class="font-serif text-xl font-bold text-forest-900 mb-1">Mountain Bike</h3>
+            <p class="text-xs text-earth-600 font-medium mb-3">Potrerillos &nbsp;·&nbsp; 1, 2 o 5 hs</p>
+            <p class="text-sm text-stone-500 leading-relaxed">Recorrés senderos de montaña sobre dos ruedas. Bicicleta y casco incluidos, tres opciones de duración.</p>
+          </div>
+        </div>
+
+        <!-- ESCALADA -->
+        <div class="activity-card bg-white rounded-2xl overflow-hidden cursor-pointer" onclick="openModal('escalada')">
+          <div class="h-52 overflow-hidden">
+            <img src="img/escalada/escalada-4.jpg" alt="Escalada en Potrerillos" class="card-img w-full h-full object-cover" loading="lazy">
+          </div>
+          <div class="p-5">
+            <h3 class="font-serif text-xl font-bold text-forest-900 mb-1">Escalada</h3>
+            <p class="text-xs text-earth-600 font-medium mb-3">Potrerillos &nbsp;·&nbsp; ~4 hs</p>
+            <p class="text-sm text-stone-500 leading-relaxed">Escalás paredes de roca con 2 guías y equipo completo (casco y arnés). Mínimo 2 personas.</p>
+          </div>
+        </div>
+
+        <!-- RAPEL -->
+        <div class="activity-card bg-white rounded-2xl overflow-hidden cursor-pointer" onclick="openModal('rapel')">
+          <div class="h-52 overflow-hidden">
+            <img src="img/rapel/rapel-3.jpg" alt="Rapel en Cacheuta" class="card-img w-full h-full object-cover" loading="lazy">
+          </div>
+          <div class="p-5">
+            <h3 class="font-serif text-xl font-bold text-forest-900 mb-1">Rapel</h3>
+            <p class="text-xs text-earth-600 font-medium mb-3">Cacheuta &nbsp;·&nbsp; ~4 hs</p>
+            <p class="text-sm text-stone-500 leading-relaxed">Descendés paredes verticales con cuerda en las quebradas de Cacheuta. 2 guías incluidos.</p>
+          </div>
+        </div>
+
+      
+      </div>
+
+      <p class="mt-10 text-sm text-stone-400 text-center">
+        Grupos de más de 8 personas — consultanos por promociones especiales en Kayak, SUP y otras actividades.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- Wave actividades → parador -->
+  <div id="wave-2" class="wave-bottom section-cream">
+    <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path id="wave-2-path" d="M0,35 C360,0 1080,70 1440,35 L1440,70 L0,70 Z" fill="#FFFFFF"/>
+    </svg>
+  </div>
+
+  <!-- ===== EL PARADOR ===== -->
+  <section id="el-parador" class="bg-white py-20 px-6">
+    <div class="max-w-7xl mx-auto">
+
+      <div class="mb-14">
+        <h2 class="font-serif text-4xl sm:text-5xl font-bold text-forest-900">El Parador</h2>
+        <p class="text-stone-500 mt-3 max-w-md">Ubicado en la hermosa Bahía Bonita de Potrerillos, es el punto de partida de tu jornada.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mb-20">
+
+        <div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-1">
+            <div class="flex items-center gap-3 py-3 px-2 border-b border-sand"><span class="text-xl">🍺</span><span class="text-stone-700 text-sm">Cervecería artesanal</span></div>
+            <div class="flex items-center gap-3 py-3 px-2 border-b border-sand"><span class="text-xl">🌿</span><span class="text-stone-700 text-sm">Regional de Mendoza</span></div>
+            <div class="flex items-center gap-3 py-3 px-2 border-b border-sand"><span class="text-xl">🌭</span><span class="text-stone-700 text-sm">Panchería</span></div>
+            <div class="flex items-center gap-3 py-3 px-2 border-b border-sand"><span class="text-xl">🛒</span><span class="text-stone-700 text-sm">Minimarket · comidas rápidas</span></div>
+            <div class="flex items-center gap-3 py-3 px-2 border-b border-sand"><span class="text-xl">🚽</span><span class="text-stone-700 text-sm">Baños</span></div>
+            <div class="flex items-center gap-3 py-3 px-2 border-b border-sand"><span class="text-xl">🅿️</span><span class="text-stone-700 text-sm">Estacionamiento gratuito</span></div>
+            <div class="flex items-center gap-3 py-3 px-2 border-b border-sand"><span class="text-xl">🛜</span><span class="text-stone-700 text-sm">WiFi</span></div>
+            <div class="flex items-center gap-3 py-3 px-2 border-b border-sand"><span class="text-xl">⛱️</span><span class="text-stone-700 text-sm">Alquiler de sombrillas y gazebos</span></div>
+            <div class="flex items-center gap-3 py-3 px-2 border-b border-sand"><span class="text-xl">💧</span><span class="text-stone-700 text-sm">Agua</span></div>
+            <div class="flex items-center gap-3 py-3 px-2 border-b border-sand"><span class="text-xl">📱</span><span class="text-stone-700 text-sm">Señal (algunas compañías)</span></div>
+          </div>
+          <div class="mt-6 flex gap-4 text-stone-600">
+            <span class="text-base font-medium">🐾 Pet-friendly</span>
+          </div>
+        </div>
+
+        <div class="space-y-5">
+          <div class="rounded-2xl overflow-hidden shadow-md" style="height: 300px">
+            <iframe
+              src="https://maps.google.com/maps?q=-32.976364,-69.180824&hl=es&z=16&output=embed"
+              width="100%"
+              height="100%"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Parador Aventura — Bahía Bonita, Potrerillos">
+            </iframe>
+          </div>
+          <a href="https://www.google.com/maps/place/32%C2%B058'34.9%22S+69%C2%B010'51.0%22W/@-32.976364,-69.180824,17z"
+             target="_blank"
+             class="text-blue-600 hover:text-blue-500 hover:underline text-base transition-colors flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            Bahía Bonita, Potrerillos · Abrir en Google Maps
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Horarios -->
+      <div id="horarios" class="border-t border-sand pt-14">
+        <h3 class="font-serif text-2xl font-bold text-forest-900 mb-8">Horarios</h3>
+        <div class="flex flex-col sm:flex-row gap-px bg-sand rounded-2xl overflow-hidden max-w-2xl">
+          <div class="flex-1 bg-white p-8">
+            <p class="text-earth-600 text-xs uppercase tracking-widest font-bold mb-2">☀️ Temporada Alta</p>
+            <p class="font-serif text-lg font-semibold text-forest-900 mb-1">Noviembre a Marzo</p>
+            <p class="text-2xl text-forest-800 font-light">9:00 — 19:00 hs</p>
+          </div>
+          <div class="flex-1 bg-white p-8">
+            <p class="text-forest-600 text-xs uppercase tracking-widest font-bold mb-2">🌨️ Temporada Baja</p>
+            <p class="font-serif text-lg font-semibold text-forest-900 mb-1">Abril a Octubre</p>
+            <p class="text-2xl text-forest-800 font-light">10:00 — 17:00 hs</p>
+          </div>
+        </div>
+        <p class="mt-5 text-xs text-stone-400 max-w-lg">
+          Kayak, SUP y Bici Acuática no requieren reserva en verano. Rafting, MTB, Canopy, Trekking, Escalada y Rapel siempre con reserva previa.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Wave blanca → verde oscuro -->
+  <div id="wave-3" style="line-height:0; background-color:#0f3009">
+    <svg id="wave-3-svg" viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block; background-color:#FFFFFF">
+      <path id="wave-3-path" d="M0,0 C480,70 960,70 1440,0 L1440,70 L0,70 Z" fill="#0f3009"/>
+    </svg>
+  </div>
+
+  <!-- ===== SOBRE NOSOTROS ===== -->
+  <section id="nosotros" class="bg-forest-900 py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+        <div class="text-white">
+          <h2 class="font-serif text-4xl sm:text-5xl font-bold mb-6 leading-tight">
+            Hermanos del alma,<br>
+            <em class="italic font-normal text-earth-400">amantes de la montaña</em>
+          </h2>
+          <div class="w-12 h-px bg-earth-600 mb-8"></div>
+          <div class="space-y-4 text-cream/75 leading-relaxed text-sm sm:text-base">
+            <p>Parador Aventura nació del encuentro de dos amigos en el Club de Montaña de Maipú. Después de compartir temporadas guiando en el Aconcagua, decidieron invertir su pasión y sus ahorros en construir algo propio.</p>
+            <p>Lo que empezó como un pequeño rental de equipos en Potrerillos fue creciendo temporada a temporada. En 2014 llegaron los primeros 6 kayaks, y desde entonces no pararon de sumar actividades y experiencias.</p>
+            <p>Hoy son el lugar de referencia para el turismo aventura en el embalse. Más de una década, nueve actividades y un equipo apasionado que sigue creciendo cada año un poco más.</p>
+          </div>
+          <p class="mt-8 text-cream/40 text-sm">Fundado en 2010 · Potrerillos, Mendoza</p>
+        </div>
+
+        <div class="relative">
+          <img src="img/Equipo.jpeg" alt="Nuestro equipo" class="rounded-2xl w-full h-80 lg:h-96 object-cover shadow-xl">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave verde → cream -->
+  <div id="wave-4" style="line-height:0; background-color:#F7F1E6">
+    <svg id="wave-4-svg" viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block; background-color:#0f3009">
+      <path id="wave-4-path" d="M0,70 C480,0 960,0 1440,70 L1440,70 L0,70 Z" fill="#F7F1E6"/>
+    </svg>
+  </div>
+
+  <!-- ===== CONTACTO ===== -->
+  <section id="contacto" class="section-cream py-24 px-6">
+    <div class="max-w-4xl mx-auto">
+
+      <div class="mb-12">
+        <h2 class="font-serif text-4xl sm:text-5xl font-bold text-forest-900">¿Querés reservar?</h2>
+        <p class="text-stone-500 mt-3 max-w-sm">Escribinos por WhatsApp y te respondemos enseguida.</p>
+      </div>
+
+      <div class="flex flex-col items-start gap-4 mb-16">
+        <div class="flex flex-wrap gap-4">
+          <a href="https://wa.me/5492615370306?text=Hola!%20Quiero%20reservar%20una%20actividad%20en%20Parador%20Aventura%20%F0%9F%8F%94%EF%B8%8F"
+             target="_blank"
+             class="inline-flex items-center gap-3 bg-green-700 hover:bg-green-600 text-white px-9 py-4 rounded-full font-bold text-base transition-all duration-300 hover:shadow-lg whitespace-nowrap">
+            <svg class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            261 5370306
+          </a>
+          <a href="https://wa.me/5492615099425?text=Hola!%20Quiero%20reservar%20una%20actividad%20en%20Parador%20Aventura%20%F0%9F%8F%94%EF%B8%8F"
+             target="_blank"
+             class="inline-flex items-center gap-3 bg-green-700 hover:bg-green-600 text-white px-9 py-4 rounded-full font-bold text-base transition-all duration-300 hover:shadow-lg whitespace-nowrap">
+            <svg class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            261 5099425
+          </a>
+        </div>
+        <a href="https://www.instagram.com/paradoraventura/" target="_blank"
+           class="inline-flex items-center gap-3 bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 hover:opacity-90 text-white px-9 py-4 rounded-full font-bold text-base transition-all duration-300 hover:shadow-lg">
+          <svg class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          Seguinos
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 border-t border-sand pt-12">
+        <div>
+          <p class="font-serif text-base font-semibold text-forest-900 mb-1">Dónde estamos</p>
+          <p class="text-stone-500 text-sm mb-2">Bahía Bonita, Potrerillos<br>Luján de Cuyo, Mendoza</p>
+          <a href="https://www.google.com/maps/place/32%C2%B058'34.9%22S+69%C2%B010'51.0%22W/@-32.976364,-69.180824,17z"
+             target="_blank"
+             class="text-forest-700 hover:text-forest-500 text-xs font-semibold underline underline-offset-2 transition-colors">
+            Ver en Google Maps
+          </a>
+        </div>
+        <div>
+          <p class="font-serif text-base font-semibold text-forest-900 mb-1">Horarios</p>
+          <p class="text-stone-500 text-sm">Verano: 9 a 19 hs<br>Invierno: 10 a 17 hs</p>
+        </div>
+        <div>
+          <p class="font-serif text-base font-semibold text-forest-900 mb-1">Mascotas</p>
+          <p class="text-stone-500 text-sm">Somos pet-friendly. Podés traer a toda la familia.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="bg-bark py-14 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-10 mb-10">
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <img src="img/logo.jpg" alt="Parador Aventura" class="w-10 h-10 rounded-full object-cover">
+            <h3 class="font-serif text-xl font-bold text-cream">Parador Aventura</h3>
+          </div>
+          <p class="text-cream/50 text-sm leading-relaxed">Turismo aventura en el corazón de los Andes mendocinos. Desde 2010.</p>
+        </div>
+        <div>
+          <h4 class="text-cream/50 uppercase text-xs tracking-widest font-bold mb-4">Actividades</h4>
+          <ul class="space-y-1.5 text-cream/40 text-sm">
+            <li><a href="#actividades" class="hover:text-cream/70 transition-colors">Rafting · Mountain Bike · Kayak</a></li>
+            <li><a href="#actividades" class="hover:text-cream/70 transition-colors">SUP · Bici Acuática · Canopy</a></li>
+            <li><a href="#actividades" class="hover:text-cream/70 transition-colors">Trekking · Escalada · Rapel</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-cream/50 uppercase text-xs tracking-widest font-bold mb-4">Contacto</h4>
+          <ul class="space-y-2 text-cream/40 text-sm">
+            <li>Bahía Bonita, Potrerillos, Mendoza</li>
+            <li><a href="https://wa.me/5492615370306" target="_blank" class="hover:text-cream/70 transition-colors">WhatsApp · 261 5370306</a></li>
+            <li><a href="https://wa.me/5492615099425" target="_blank" class="hover:text-cream/70 transition-colors">WhatsApp · 261 5099425</a></li>
+            <li><a href="https://www.instagram.com/paradoraventura/" target="_blank" class="hover:text-cream/70 transition-colors">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-cream/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <p class="text-cream/25 text-xs">© 2026 Parador Aventura. Todos los derechos reservados.</p>
+        <a href="https://www.google.com/maps/place/32%C2%B058'34.9%22S+69%C2%B010'51.0%22W/@-32.976364,-69.180824,17z"
+           target="_blank"
+           class="text-cream/25 hover:text-cream/60 text-xs transition-colors">
+          Potrerillos · Luján de Cuyo · Mendoza · Argentina
+        </a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ===== MODAL ===== -->
+  <div id="modal-overlay" class="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm items-center justify-center p-4" onclick="closeModal()">
+    <div id="modal-content" class="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto relative shadow-2xl" onclick="event.stopPropagation()">
+      <button onclick="closeModal()" class="absolute top-4 right-4 z-10 bg-white rounded-full p-2 shadow hover:bg-stone-100 transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
